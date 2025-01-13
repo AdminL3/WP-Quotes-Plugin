@@ -1,0 +1,16 @@
+<br /><br /><br />
+<div style="text-align: center; display: block">
+	<span id="content" style="display: block; font-size: 1.5em; margin-bottom: 10px"></span>
+	<strong id="author" style="display: block; font-size: 1.2em; color: gray"></strong>
+</div>
+<script>
+	async function fetchApiData() {
+		const response = await fetch(
+			"https://djksbm.org/basketball/wp-json/quote/random"
+		);
+		const { content, author } = await response.json();
+		document.getElementById("content").innerText = content;
+		document.getElementById("author").innerText = `~ ${author}`;
+	}
+	fetchApiData();
+</script>

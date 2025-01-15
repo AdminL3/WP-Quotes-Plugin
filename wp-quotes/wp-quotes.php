@@ -7,9 +7,9 @@
  * @package           Wp_Quotes
  *
  * @wordpress-plugin
- * Plugin Name:       WP API
+ * Plugin Name:       WP Quotes
  * Plugin URI:        https://github.com/AdminL3/wp-quotes
- * Description:       A simple WordPress plugin that adds a custom API endpoint to retrieve quotes.
+ * Description:       A simple WordPress plugin to upload a database of quotes and display them on your site.
  * Version:           1.0.0
  * Author:            Levi Blumenwitz
  * Author URI:        https://github.com/AdminL3/

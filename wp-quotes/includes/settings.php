@@ -27,28 +27,22 @@ function wp_quotes_settings_page() {
 
             if ($movefile && !isset($movefile['error'])) {
                 $url = $movefile['url'];
-                $new_name = sanitize_text_field($_POST['name_input']);
 
                 $path = parse_url($url, PHP_URL_PATH);
+                if (preg_match('#\d{4}/\d{2}/[^/]+$#', $path, $matches)) {
+                    $relative_path = $matches[0];
+                } else {
+                    echo "No matching year/path found.";
+                    $relative_path = '';
+                }
 
-                // Remove "/wp-content/uploads" to keep only "/2025/01/quotes.db"
-                $relative_path = str_replace('/wp-content/uploads', '', $path);
-
-                update_option('wp_quotes_db_name'   , $relative_path);
-                echo 'File uploaded successfully: ' $relative_path;
-                echo '<meta http-equiv="refresh" content="0">';
+                update_option('wp_quotes_db_name', $relative_path);
+                echo 'File uploaded successfully: ', $relative_path;
             } else {
                 echo 'Error uploading file: ' . esc_html($movefile['error']);
             }
         } else {
             echo 'No file selected for upload.';
         }
-    }
-    // Update database name
-    if (isset($_POST['update_name'])) {
-        $new_name = sanitize_text_field($_POST['name_input']);
-        update_option('wp_quotes_db_name', $new_name);
-
-        echo '<meta http-equiv="refresh" content="0">';
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
 function display_daily_quote_sqlite() {
-    $db_path = plugin_dir_path(__FILE__) . 'quotes.db';
+    $stored_name = get_option('wp_quotes_db_name', '');
+    $db_path = "wp-content/uploads/$stored_name";
     $db = new SQLite3($db_path);
 
     if (!$db) {

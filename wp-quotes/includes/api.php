@@ -31,7 +31,8 @@ add_action('rest_api_init', function () {
 });
 
 function get_daily() {
-	$db_path = plugin_dir_path(__FILE__) . 'quotes.db';
+    $stored_name = get_option('wp_quotes_db_name', '');
+    $db_path = "wp-content/uploads/$stored_name";
     $db = new SQLite3($db_path);
 
     if (!$db) {
@@ -70,8 +71,10 @@ function get_daily() {
 
 
 function get_all() {
-	$db_path = plugin_dir_path(__FILE__) . 'quotes.db';
+    $stored_name = get_option('wp_quotes_db_name', '');
+    $db_path = "wp-content/uploads/$stored_name";
     $db = new SQLite3($db_path);
+
     if (!$db) {
         return 'Datenbank konnte nicht geöffnet werden.';
     }
@@ -97,7 +100,8 @@ function get_all() {
 
 
 function get_random() {
-	$db_path = plugin_dir_path(__FILE__) . 'quotes.db';
+    $stored_name = get_option('wp_quotes_db_name', '');
+    $db_path = "wp-content/uploads/$stored_name";
     $db = new SQLite3($db_path);
     if (!$db) {
         return 'Datenbank konnte nicht geöffnet werden.';
